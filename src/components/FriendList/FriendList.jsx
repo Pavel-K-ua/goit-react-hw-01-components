@@ -8,10 +8,10 @@ import {
   StyledFriendName,
 } from './FriendList.Styled';
 
-export const FriendList = friends => {
+export const FriendList = ({ friends }) => {
   return (
     <StyledFriendList>
-      {friends.friends.map(friend => (
+      {friends.map(friend => (
         <StyledFriendItem key={friend.id}>
           {friend.isOnline ? (
             <StyledFriendStatus
@@ -39,8 +39,12 @@ export const FriendList = friends => {
 };
 
 FriendList.propTypes = {
-  avatar: PropTypes.string,
-  name: PropTypes.string,
-  isOnline: PropTypes.bool,
-  id: PropTypes.number,
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatar: PropTypes.string,
+      name: PropTypes.string,
+      isOnline: PropTypes.bool,
+      id: PropTypes.number,
+    })
+  ),
 };

@@ -10,7 +10,8 @@ import {
   StyledTd,
 } from './TransactionHistory.Styled';
 
-export const TransactionHistory = items => {
+export const TransactionHistory = ({ items }) => {
+  console.log(items);
   return (
     <StyledTable>
       <StyledThead>
@@ -22,7 +23,7 @@ export const TransactionHistory = items => {
       </StyledThead>
 
       <StyledTbody>
-        {items.items.map((item, idx) => (
+        {items.map((item, idx) => (
           <StyledBodyTr $idx={idx} key={item.id}>
             <StyledTd>{item.type}</StyledTd>
             <StyledTd>{item.amount}</StyledTd>
@@ -35,8 +36,12 @@ export const TransactionHistory = items => {
 };
 
 TransactionHistory.propTypes = {
-  id: PropTypes.string,
-  type: PropTypes.string,
-  amount: PropTypes.string,
-  currency: PropTypes.string,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      type: PropTypes.string,
+      amount: PropTypes.string,
+      currency: PropTypes.string,
+    })
+  ),
 };
